@@ -32,7 +32,7 @@ export default function App() {
   return (
     <div style={{ background: '#0A0A0A', minHeight: '100vh' }}>
       <Navbar page={page} setPage={goTo} />
-      <main>
+      <main key={page} className="route-enter">
         <Page setPage={goTo} />
       </main>
       <Footer setPage={goTo} />

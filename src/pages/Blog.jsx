@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useInView } from '../components/useInView'
 
 const POSTS = [
-  { id:1, cat:'Nutrition',  title:'5 Pre-Workout Meals That Actually Fuel Your Training',     date:'Mar 15, 2025', read:'4 min', excerpt:'What you eat before training determines how much you get out of it. Here are five proven meals that maximize energy, focus, and performance during intense sessions.' },
-  { id:2, cat:'Training',   title:'The Science Behind Progressive Overload: Why It Works',    date:'Mar 10, 2025', read:'6 min', excerpt:'Progressive overload is the single most important principle in strength training. Learn how to apply it correctly to continuously build muscle and strength.' },
-  { id:3, cat:'Recovery',   title:'Achieving a Fit Body Fitness with Purpose',                date:'Mar 5, 2025',  read:'5 min', excerpt:'Recovery is where the magic happens. Sleep, hydration, mobility work — these overlooked elements are what separate consistent athletes from everyone else.' },
-  { id:4, cat:'Mindset',    title:'The Role to Live with a Positive Mindset in Fitness',      date:'Feb 28, 2025', read:'3 min', excerpt:'Your mindset determines your consistency. Discover practical strategies to stay motivated even when progress feels slow or life gets in the way.' },
-  { id:5, cat:'Training',   title:'HIIT vs Steady-State Cardio: What Burns More Fat?',        date:'Feb 22, 2025', read:'5 min', excerpt:'The debate is real. We break down the science and help you decide which cardio method best fits your goals, schedule, and fitness level.' },
-  { id:6, cat:'Nutrition',  title:'Protein Timing: Does It Actually Matter?',                  date:'Feb 18, 2025', read:'4 min', excerpt:'You have heard about the anabolic window. But does protein timing actually matter for muscle growth? Here is what the latest research says.' },
+  { id:1, cat:'Nutrition', title:'5 Pre-Workout Meals That Actually Fuel Your Training', date:'Mar 15, 2025', read:'4 min', img:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80', excerpt:'What you eat before training determines how much you get out of it. Here are five proven meals that maximize energy, focus, and performance during intense sessions.' },
+  { id:2, cat:'Training', title:'The Science Behind Progressive Overload: Why It Works', date:'Mar 10, 2025', read:'6 min', img:'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80', excerpt:'Progressive overload is the single most important principle in strength training. Learn how to apply it correctly to continuously build muscle and strength.' },
+  { id:3, cat:'Recovery', title:'Achieving a Fit Body Fitness with Purpose', date:'Mar 5, 2025', read:'5 min', img:'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80', excerpt:'Recovery is where the magic happens. Sleep, hydration, mobility work — these overlooked elements are what separate consistent athletes from everyone else.' },
+  { id:4, cat:'Mindset', title:'The Role to Live with a Positive Mindset in Fitness', date:'Feb 28, 2025', read:'3 min', img:'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80', excerpt:'Your mindset determines your consistency. Discover practical strategies to stay motivated even when progress feels slow or life gets in the way.' },
+  { id:5, cat:'Training', title:'HIIT vs Steady-State Cardio: What Burns More Fat?', date:'Feb 22, 2025', read:'5 min', img:'https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=1200&q=80', excerpt:'The debate is real. We break down the science and help you decide which cardio method best fits your goals, schedule, and fitness level.' },
+  { id:6, cat:'Nutrition', title:'Protein Timing: Does It Actually Matter?', date:'Feb 18, 2025', read:'4 min', img:'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1200&q=80', excerpt:'You have heard about the anabolic window. But does protein timing actually matter for muscle growth? Here is what the latest research says.' },
 ]
 
 const CATS = ['All', 'Training', 'Nutrition', 'Recovery', 'Mindset']
@@ -35,8 +35,9 @@ export default function Blog({ setPage }) {
         </section>
         <section style={{ background: '#111111' }}>
           <div className="max-w-3xl mx-auto px-6 py-12">
-            <div className="h-56 rounded-sm mb-8 flex items-center justify-center" style={{ background: 'linear-gradient(135deg,#1a1a1a,#1a0000)', border:'1px solid rgba(232,0,29,0.15)' }}>
-              <p className="text-[10px] text-gray-800">Featured image</p>
+            <div className="h-56 rounded-sm mb-8 overflow-hidden relative" style={{ border:'1px solid rgba(232,0,29,0.15)' }}>
+              <img src={post.img} alt={post.title} className="w-full h-full object-cover" />
+              <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,10,10,0.45), rgba(10,10,10,0.15))' }} />
             </div>
             <p className="text-[14px] text-gray-400 leading-relaxed mb-5">{post.excerpt}</p>
             <p className="text-[14px] text-gray-400 leading-relaxed mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -78,8 +79,9 @@ export default function Blog({ setPage }) {
             {filtered.map((post,i) => (
               <div key={post.id} className={`anim-init d${(i%3)*100} blog-card`} style={{ background:'#181818', border:'1px solid #242424' }}
                 onClick={() => setOpen(post.id)}>
-                <div className="blog-img" style={{ background:`linear-gradient(${130+i*25}deg,#1a0000,#111)` }}>
-                  <span className="font-black text-5xl opacity-[0.08]" style={{ fontFamily:'Barlow', color:'#E8001D' }}>FK</span>
+                <div className="blog-img relative">
+                  <img src={post.img} alt={post.title} className="w-full h-full object-cover" />
+                  <div className="class-media-overlay" />
                 </div>
                 <div className="p-5">
                   <span className="blog-cat">{post.cat}</span>

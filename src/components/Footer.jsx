@@ -1,7 +1,9 @@
 import React from 'react'
+import { SocialIcon } from './FitIcons'
 
 export default function Footer({ setPage }) {
   const go = (id) => { setPage(id); window.scrollTo(0, 0) }
+  const socials = ['facebook', 'twitter', 'linkedin', 'youtube']
   return (
     <footer style={{ background: '#0a0a0a', borderTop: '3px solid #E8001D' }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
@@ -12,12 +14,14 @@ export default function Footer({ setPage }) {
             </div>
             <p className="text-[12px] text-gray-600 leading-relaxed max-w-[220px] mb-5">Your fitness journey starts here. Expert coaches, modern equipment, proven results.</p>
             <div className="flex gap-2">
-              {['FB', 'TW', 'IN', 'YT'].map(s => (
-                <button key={s} className="w-8 h-8 rounded font-bold text-[10px] transition-all duration-200"
+              {socials.map((s) => (
+                <button key={s} aria-label={s} className="w-8 h-8 rounded font-bold text-[10px] transition-all duration-200 flex items-center justify-center"
                   style={{ background: '#1a1a1a', color: '#555', border: '1px solid #2a2a2a' }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#E8001D'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.border = '1px solid #E8001D' }}
                   onMouseLeave={e => { e.currentTarget.style.background = '#1a1a1a'; e.currentTarget.style.color = '#555'; e.currentTarget.style.border = '1px solid #2a2a2a' }}
-                >{s}</button>
+                >
+                  <SocialIcon type={s} size={14} color="currentColor" />
+                </button>
               ))}
             </div>
           </div>

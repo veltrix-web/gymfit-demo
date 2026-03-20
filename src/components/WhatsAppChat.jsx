@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FitnessIcon } from './FitIcons'
 
 export default function WhatsAppChat() {
   const [open, setOpen] = useState(false)
@@ -22,7 +23,9 @@ export default function WhatsAppChat() {
           {/* Header */}
           <div style={{ background: '#075E54', padding: '14px 16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#128C7E', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Barlow', fontWeight: 900, fontSize: 16, color: '#fff' }}>FK</div>
+              <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#128C7E', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+                <FitnessIcon type="strength" size={16} color="#fff" />
+              </div>
               <div>
                 <p style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 13, color: '#fff' }}>FitKit Support</p>
                 <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)' }}>Typically replies in minutes</p>

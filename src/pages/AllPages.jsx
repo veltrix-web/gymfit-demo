@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import { useInView } from '../components/useInView'
+import { FitnessIcon, ContactIcon } from '../components/FitIcons'
+
+const ABOUT_STORY_IMG = 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1400&q=80'
+const MAP_EMBED = 'https://www.google.com/maps?q=Sector+47,+Chandigarh&output=embed'
 
 // ── ABOUT ────────────────────────────────────────────────────────────────────
 export function About({ setPage }) {
@@ -16,11 +20,9 @@ export function About({ setPage }) {
       </section>
       <section ref={r1} className="py-24" style={{ background:'#111111' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="anim-init d0 rounded-sm overflow-hidden" style={{ aspectRatio:'4/3', background:'linear-gradient(145deg,#1a1a1a,#1a0000)', border:'1px solid rgba(232,0,29,0.15)' }}>
-            <div className="w-full h-full flex items-center justify-center flex-col gap-2">
-              <p className="font-black text-7xl opacity-[0.08]" style={{ fontFamily:'Barlow', color:'#E8001D' }}>FK</p>
-              <p className="text-[10px] text-gray-800">Gym interior / founder photo</p>
-            </div>
+          <div className="anim-init d0 rounded-sm overflow-hidden relative" style={{ aspectRatio:'4/3', border:'1px solid rgba(232,0,29,0.15)' }}>
+            <img src={ABOUT_STORY_IMG} alt="FitKit gym floor and coaching area" className="w-full h-full object-cover" />
+            <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,10,10,0.45), rgba(10,10,10,0.15))' }} />
           </div>
           <div>
             <div className="anim-init d0 stag"><div className="line" /><span>Our Story</span></div>
@@ -58,15 +60,96 @@ export function About({ setPage }) {
 
 // ── CLASSES ──────────────────────────────────────────────────────────────────
 const ALL_CLASSES = [
-  { id:1, cat:'Strength', icon:'ST', title:'Strength Training',       dur:'60 min', lvl:'All Levels',   desc:'Build real, functional strength from the ground up with compound lifts and progressive overload.' },
-  { id:2, cat:'Cardio',   icon:'HC', title:'HIIT Blaze',              dur:'45 min', lvl:'Intermediate', desc:'Torch fat with interval-based circuits designed to push your cardio limits and boost metabolism.' },
-  { id:3, cat:'Personal', icon:'PT', title:'Personal Training',       dur:'60 min', lvl:'All Levels',   desc:'One-on-one coaching fully tailored to your body, goals and lifestyle for maximum results.' },
-  { id:4, cat:'Yoga',     icon:'YM', title:'Yoga & Mindfulness',      dur:'75 min', lvl:'Beginner',     desc:'Improve mobility, reduce stress and build a strong mind-body connection with guided sessions.' },
-  { id:5, cat:'Combat',   icon:'BC', title:'Boxing & Combat',         dur:'60 min', lvl:'All Levels',   desc:'Real striking fundamentals delivering one of the most effective total-body workouts.' },
-  { id:6, cat:'Perf',     icon:'AP', title:'Athletic Performance',    dur:'60 min', lvl:'Advanced',     desc:'Speed, agility, explosiveness — sport-specific programming for serious competitors.' },
-  { id:7, cat:'Strength', icon:'SC', title:'Strength & Conditioning', dur:'60 min', lvl:'Intermediate', desc:'Blend powerlifting fundamentals with metabolic conditioning for a complete athletic build.' },
-  { id:8, cat:'Cardio',   icon:'CY', title:'Cycling',                 dur:'45 min', lvl:'All Levels',   desc:'High-energy indoor cycling synchronized to music — low impact, maximum cardio burn.' },
-  { id:9, cat:'Yoga',     icon:'MD', title:'Meditation & Recovery',   dur:'30 min', lvl:'Beginner',     desc:'Breathwork and guided meditation to keep your body ready and mind balanced.' },
+  {
+    id: 1,
+    cat: 'Strength',
+    iconType: 'strength',
+    title: 'Strength Training',
+    dur: '60 min',
+    lvl: 'All Levels',
+    img: 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Build real, functional strength from the ground up with compound lifts and progressive overload.',
+  },
+  {
+    id: 2,
+    cat: 'Cardio',
+    iconType: 'hiit',
+    title: 'HIIT Blaze',
+    dur: '45 min',
+    lvl: 'Intermediate',
+    img: 'https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Torch fat with interval-based circuits designed to push your cardio limits and boost metabolism.',
+  },
+  {
+    id: 3,
+    cat: 'Personal',
+    iconType: 'personal',
+    title: 'Personal Training',
+    dur: '60 min',
+    lvl: 'All Levels',
+    img: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1200&q=80',
+    desc: 'One-on-one coaching fully tailored to your body, goals and lifestyle for maximum results.',
+  },
+  {
+    id: 4,
+    cat: 'Yoga',
+    iconType: 'yoga',
+    title: 'Yoga & Mindfulness',
+    dur: '75 min',
+    lvl: 'Beginner',
+    img: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Improve mobility, reduce stress and build a strong mind-body connection with guided sessions.',
+  },
+  {
+    id: 5,
+    cat: 'Combat',
+    iconType: 'combat',
+    title: 'Boxing & Combat',
+    dur: '60 min',
+    lvl: 'All Levels',
+    img: 'https://images.unsplash.com/photo-1517438984742-1262db08379e?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Real striking fundamentals delivering one of the most effective total-body workouts.',
+  },
+  {
+    id: 6,
+    cat: 'Perf',
+    iconType: 'performance',
+    title: 'Athletic Performance',
+    dur: '60 min',
+    lvl: 'Advanced',
+    img: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Speed, agility, explosiveness — sport-specific programming for serious competitors.',
+  },
+  {
+    id: 7,
+    cat: 'Strength',
+    iconType: 'conditioning',
+    title: 'Strength & Conditioning',
+    dur: '60 min',
+    lvl: 'Intermediate',
+    img: 'https://images.unsplash.com/photo-1583454151719-4ce2fca6680a?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Blend powerlifting fundamentals with metabolic conditioning for a complete athletic build.',
+  },
+  {
+    id: 8,
+    cat: 'Cardio',
+    iconType: 'cycling',
+    title: 'Cycling',
+    dur: '45 min',
+    lvl: 'All Levels',
+    img: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1200&q=80',
+    desc: 'High-energy indoor cycling synchronized to music — low impact, maximum cardio burn.',
+  },
+  {
+    id: 9,
+    cat: 'Yoga',
+    iconType: 'recovery',
+    title: 'Meditation & Recovery',
+    dur: '30 min',
+    lvl: 'Beginner',
+    img: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Breathwork and guided meditation to keep your body ready and mind balanced.',
+  },
 ]
 const CATS_C = ['All','Strength','Cardio','Personal','Yoga','Combat','Perf']
 
@@ -98,8 +181,12 @@ export function Classes({ setPage }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((cls,i) => (
               <div key={cls.id} className="card-lift rounded-sm overflow-hidden" style={{ background:'#181818', border:'1px solid #242424' }}>
-                <div className="h-36 flex items-center justify-center" style={{ background:`linear-gradient(${135+i*20}deg,#1a0000,#111)` }}>
-                  <span className="font-black text-6xl opacity-[0.08]" style={{ fontFamily:'Barlow', color:'#E8001D' }}>{cls.icon}</span>
+                <div className="h-36 relative overflow-hidden">
+                  <img src={cls.img} alt={cls.title} className="w-full h-full object-cover" />
+                  <div className="class-media-overlay" />
+                  <span className="class-icon-chip">
+                    <FitnessIcon type={cls.iconType} size={18} color="#fff" />
+                  </span>
                 </div>
                 <div className="p-5">
                   <div className="flex justify-between mb-3">
@@ -121,12 +208,12 @@ export function Classes({ setPage }) {
 
 // ── TRAINERS ─────────────────────────────────────────────────────────────────
 const TRAINERS = [
-  { init:'VS', name:'Vikram Singh',  role:'Head Strength Coach',     exp:'14 Years', cert:'NSCA-CSCS',          spec:'Powerlifting, Periodization' },
-  { init:'PM', name:'Priya Mehta',   role:'Yoga & Wellness',         exp:'9 Years',  cert:'RYT-500',            spec:'Hatha, Vinyasa, Meditation' },
-  { init:'AD', name:'Arjun Das',     role:'HIIT & Cardio Specialist',exp:'11 Years', cert:'ACE-CPT',            spec:'Fat Loss, Metabolic Conditioning' },
-  { init:'SK', name:'Sneha Kapoor',  role:'Nutrition Coach',         exp:'7 Years',  cert:'Precision Nutrition', spec:'Meal Planning, Body Recomposition' },
-  { init:'RP', name:'Rohit Patel',   role:'Boxing & Combat',         exp:'8 Years',  cert:'AIBA Level 2',       spec:'Boxing, Muay Thai, Self-Defence' },
-  { init:'NA', name:'Neha Arora',    role:'Athletic Performance',    exp:'6 Years',  cert:'NSCA-CSPS',          spec:'Speed, Agility, Sports Conditioning' },
+  { name:'Vikram Singh', role:'Head Strength Coach', exp:'14 Years', cert:'NSCA-CSCS', spec:'Powerlifting, Periodization', img:'https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=900&q=80' },
+  { name:'Priya Mehta', role:'Yoga & Wellness', exp:'9 Years', cert:'RYT-500', spec:'Hatha, Vinyasa, Meditation', img:'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80' },
+  { name:'Arjun Das', role:'HIIT & Cardio Specialist', exp:'11 Years', cert:'ACE-CPT', spec:'Fat Loss, Metabolic Conditioning', img:'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=900&q=80' },
+  { name:'Sneha Kapoor', role:'Nutrition Coach', exp:'7 Years', cert:'Precision Nutrition', spec:'Meal Planning, Body Recomposition', img:'https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=900&q=80' },
+  { name:'Rohit Patel', role:'Boxing & Combat', exp:'8 Years', cert:'AIBA Level 2', spec:'Boxing, Muay Thai, Self-Defence', img:'https://images.unsplash.com/photo-1517438984742-1262db08379e?auto=format&fit=crop&w=900&q=80' },
+  { name:'Neha Arora', role:'Athletic Performance', exp:'6 Years', cert:'NSCA-CSPS', spec:'Speed, Agility, Sports Conditioning', img:'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=900&q=80' },
 ]
 
 export function Trainers({ setPage }) {
@@ -145,10 +232,9 @@ export function Trainers({ setPage }) {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {TRAINERS.map((t,i) => (
             <div key={t.name} className={`anim-init d${(i%3)*100} trainer-card`} style={{ background:'#181818', border:'1px solid #242424' }}>
-              <div className="photo h-56 relative" style={{ background:`linear-gradient(${140+i*20}deg,#1a0000,#0a0a0a)` }}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-black text-7xl opacity-[0.08]" style={{ fontFamily:'Barlow', color:'#E8001D' }}>{t.init}</span>
-                </div>
+              <div className="photo h-56 relative">
+                <img src={t.img} alt={`${t.name} - ${t.role}`} className="w-full h-full object-cover" />
+                <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,10,10,0.45), rgba(10,10,10,0.08))' }} />
                 <span className="absolute top-3 right-3 badge badge-red text-[9px]">{t.cert}</span>
               </div>
               <div className="trainer-info">
@@ -173,6 +259,12 @@ export function Contact() {
   const r1 = useInView()
   const [form, setForm] = useState({ name:'', email:'', phone:'', subject:'', message:'' })
   const [sent, setSent] = useState(false)
+  const details = [
+    { label: 'Address', value: '47/GF-VX2, Unnamed Road, Chandigarh - 160000', icon: 'address' },
+    { label: 'Phone', value: '+91 98765 43210', icon: 'phone' },
+    { label: 'Email', value: 'info@fitkit.in', icon: 'email' },
+    { label: 'Hours', value: 'Mon–Sun: 6:00 AM – 11:00 PM', icon: 'hours' },
+  ]
   const ch = e => setForm({ ...form, [e.target.name]: e.target.value })
   const submit = e => {
     e.preventDefault()
@@ -198,15 +290,30 @@ export function Contact() {
                 FIND US &<br /><span style={{ color:'#E8001D' }}>REACH OUT</span>
               </h2>
             </div>
-            {[['Address','47/GF-VX2, Unnamed Road, Chandigarh - 160000'],['Phone','+91 98765 43210'],['Email','info@fitkit.in'],['Hours','Mon–Sun: 6:00 AM – 11:00 PM']].map(([l,v]) => (
-              <div key={l} className="anim-init d200 p-4 rounded-sm" style={{ background:'#181818', border:'1px solid #2a2a2a', borderLeft:'3px solid #E8001D' }}>
-                <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color:'#E8001D' }}>{l}</p>
-                <p className="text-[13px] text-gray-300">{v}</p>
+            {details.map((item) => (
+              <div key={item.label} className="anim-init d200 p-4 rounded-sm" style={{ background:'#181818', border:'1px solid #2a2a2a', borderLeft:'3px solid #E8001D' }}>
+                <div className="flex items-start gap-3">
+                  <span style={{ width: 24, height: 24, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#E8001D', marginTop: 2 }}>
+                    <ContactIcon type={item.icon} size={16} color="#E8001D" />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color:'#E8001D' }}>{item.label}</p>
+                    <p className="text-[13px] text-gray-300">{item.value}</p>
+                  </div>
+                </div>
               </div>
             ))}
-            <div className="anim-init d300 map-ph">
-              <p className="font-black text-3xl opacity-20" style={{ fontFamily:'Barlow', color:'#E8001D' }}>MAP</p>
-              <p className="text-[11px] text-gray-700">Replace with Google Maps iframe</p>
+            <div className="anim-init d300 map-ph overflow-hidden">
+              <iframe
+                src={MAP_EMBED}
+                title="FitKit Gym Chandigarh Map"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: 'grayscale(0.75) contrast(1.05)' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
           <div className="lg:col-span-3 anim-init d200 p-8 rounded-sm" style={{ background:'#181818', border:'1px solid #2a2a2a', borderTop:'3px solid #E8001D' }}>

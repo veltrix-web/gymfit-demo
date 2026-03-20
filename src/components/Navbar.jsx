@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { SocialIcon, ContactIcon } from './FitIcons'
 
 const LINKS = [
   { label: 'Home', id: 'home' },
@@ -13,6 +14,17 @@ const LINKS = [
 export default function Navbar({ page, setPage }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const contactItems = [
+    { key: 'phone', text: '+91 98765 43210', icon: 'phone' },
+    { key: 'email', text: 'info@fitkit.in', icon: 'email' },
+    { key: 'address', text: '47/GF-VX2, Chandigarh', icon: 'address' },
+  ]
+  const socials = [
+    { key: 'facebook', href: '#', label: 'Facebook' },
+    { key: 'twitter', href: '#', label: 'Twitter' },
+    { key: 'linkedin', href: '#', label: 'LinkedIn' },
+    { key: 'instagram', href: '#', label: 'Instagram' },
+  ]
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50)
@@ -28,16 +40,38 @@ export default function Navbar({ page, setPage }) {
       <div className="topbar hidden md:block">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <span>+91 98765 43210</span>
-            <span>info@fitkit.in</span>
-            <span>47/GF-VX2, Unnamed Road, Chandigarh</span>
+            {contactItems.map((item) => (
+              <span key={item.key} className="inline-flex items-center gap-1.5">
+                <ContactIcon type={item.icon} size={12} color="#666" />
+                {item.text}
+              </span>
+            ))}
           </div>
-          <div className="flex items-center gap-4">
-            {['Facebook', 'Twitter', 'LinkedIn', 'Instagram'].map(s => (
-              <a key={s} href="#" className="text-[11px] text-gray-600 hover:text-red-500 transition-colors" style={{ color: '#666' }}
-                onMouseEnter={e => e.target.style.color = '#E8001D'}
-                onMouseLeave={e => e.target.style.color = '#666'}
-              >{s}</a>
+          <div className="flex items-center gap-2">
+            {socials.map(s => (
+              <a key={s.key} href={s.href} aria-label={s.label}
+                className="w-6 h-6 rounded-sm border transition-colors duration-200 flex items-center justify-center"
+                style={{ color: '#666', borderColor: '#2a2a2a', background: '#151515' }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = '#E8001D'; e.currentTarget.style.borderColor = '#E8001D' }}
+                onMouseLeave={e => { e.currentTarget.style.color = '#666'; e.currentTarget.style.background = '#151515'; e.currentTarget.style.borderColor = '#2a2a2a' }}
+              >
+                <SocialIcon type={s.key} size={12} color="currentColor" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="topbar md:hidden">
+        <div className="px-3 py-1.5 overflow-x-auto whitespace-nowrap">
+          <div className="inline-flex items-center gap-3 text-[10px]" style={{ color: '#777' }}>
+            {contactItems.map((item, i) => (
+              <React.Fragment key={item.key}>
+                <span className="inline-flex items-center gap-1.5">
+                  <ContactIcon type={item.icon} size={11} color="#666" />
+                  {item.text}
+                </span>
+                {i < contactItems.length - 1 && <span style={{ color: '#444' }}>|</span>}
+              </React.Fragment>
             ))}
           </div>
         </div>
